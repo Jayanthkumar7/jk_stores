@@ -5,7 +5,7 @@ import random
 from sqlalchemy.sql.expression import func
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:@localhost/jk_stores"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///jk.db"
 app.config['SECRET_KEY'] = 'your_secret_key'
 
 db = SQLAlchemy(app)
@@ -207,5 +207,10 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+def initialize_database():
+    with app.app_context():
+        db.create_all()
 
-app.run(debug=True)
+if __name__ == '__main__':
+    initialize_database()
+    app.run(debug=True)
