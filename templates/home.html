@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static',filename='logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='navi.css')}}">
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-image: url('{{url_for('static',filename='jay-mantri-TFyi0QOx08c-unsplash.jpg')}}');
+        }
+        .heading {
+            font-size: 25px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 5px;
+        }
+        .name {
+            font-size: 40px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 10px;
+        }
+        .head_text {
+            margin: 150px;
+            color: #293a34;
+            background-image: linear-gradient(transparent 13%, currentColor 30%, currentColor 70%, transparent 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-attachment: fixed;
+        }
+        .head_text > * {
+            color: transparent;
+        }
+        .grid_box {
+            display: grid;
+            margin: 50px;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            column-gap: 20px;
+        }
+        .container_1 {
+            background-color:white;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .heading_box {
+            font-size: larger;
+            font-weight: bold;
+        }
+        .grid_box_2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: 25px;
+            font-size: small;
+            row-gap: 20px;
+            column-gap: 20px;
+        }
+        .image_product {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            mix-blend-mode:normal;
+        }
+        .box {
+            cursor: pointer;
+        }
+        .box_image {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        a.link {
+            color: blue;
+            text-decoration: underline;
+            margin: 10px 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    {% extends "navigation.html" %}
+   {% block content %}
+
+    <div class="head_text">
+        <p class="heading">WELCOME TO </p> 
+        <p class="name">JK STORES</p>
+    </div>
+    <div class="grid_box">
+        <div class="container_1">
+            <p class="heading_box">JK Fashion</p>
+            <div class="grid_box_2">
+                {% for i in data %}
+                <div class="box">
+                    <a href="{{url_for('product',product_id=i.id)}}">
+                    <div class="box_image">
+                        <img class="image_product" src="{{ i.image }}" alt="">
+                    </div>
+                    <p class="price">&#8377 {{i.actual_price}}</p>
+                    <p>{{i.name[:30]}}....</p>
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="container_1">
+            <p class="heading_box">Air Conditioners</p>
+            <div class="grid_box_2">
+                {% for i in air %}
+                <div class="box">
+                    <a href="{{url_for('product',product_id=i.id)}}">
+                    <div class="box_image">
+                        <img class="image_product" src="{{ i.image }}" alt="">
+                    </div>
+                    <p class="price">&#8377 {{i.actual_price}}</p>
+                    <p>{{i.name[:30]}}....</p>
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="container_1">
+            <p class="heading_box">Electronics</p>
+            <div class="grid_box_2">
+                {% for i in phones %}
+                <div class="box">
+                    <a href="{{url_for('product',product_id=i.id)}}">
+                    <div class="box_image">
+                        <img class="image_product" src="{{ i.image }}" alt="">
+                    </div>
+                    <p class="price">&#8377 {{i.actual_price}}</p>
+                    <p>{{i.name[:30]}}....</p>
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="container_1">
+            <p class="heading_box">Home & Kitchen</p>
+            <div class="grid_box_2">
+                {% for i in shoes %}
+                <div class="box">
+                    <a href="{{url_for('product',product_id=i.id)}}">
+                    <div class="box_image">
+                        <img class="image_product" src="{{ i.image }}" alt="">
+                    </div>
+                    <p class="price">&#8377 {{i.actual_price}}</p>
+                    <p>{{i.name[:30]}}....</p>
+                </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+    {% endblock content%}
+</body>
+</html>

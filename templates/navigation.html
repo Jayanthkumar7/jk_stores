@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static',filename='logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='navi.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='sidebar.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="{{url_for('static', filename='logo.png')}}" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap" rel="stylesheet">
+
+
+ <style>
+
+ </style>   
+</head> 
+<body>
+    <div class="nav">
+       
+        <div class="image">
+            <div class="button"><button class="side_bar_button" onclick="w3_open()">☰</button></div>
+            <a href="{{url_for('home')}}">
+                 <!-- <img src="{{url_for('static',filename='logo.jpeg')}}" alt="" class="logo">  -->
+                 <p class="logo">JK.</p>
+            </a>
+        </div>
+        <div class="search_div">
+            <input type="text" name="" id="" class="search" placeholder="Search">
+        </div>
+        <div class="info">
+            <div class="Contact">Contact</div>
+            <a href="{{url_for('about')}}"><div class="About">About</div></a>
+            {% if not user_name %}
+            <a href="{{url_for('login')}}"><div class="About">Login</div></a>
+            <a href="{{url_for('signup')}}"><div class="About">Signup</div></a>
+            {% else %}
+            <a href="{{url_for('cart')}}"><div class="cart"><i class="fa-solid fa-cart-shopping"></i></div></a>
+            {% endif %}
+        </div> 
+    </div>
+
+    <div class="sidebar" id="side_bar">
+        <div class="close"><button class="side_bar_close" onclick="w3_close()"> &#x2715; </button></div>
+        <div class="bar"><a href="#">Account</a></div>
+        {% if user_name %}
+        <div class="bar"><a href="{{url_for('logout')}}">logout</a></div>
+        {% endif %}
+        <div class="bar_title"><p class='title'>Shop by category</p></div>
+        <hr>
+        {% for i in categories %}
+        <div class="bar"><a href="{{url_for('products',cat=i)}}">{{i}}</a></div>
+        {% endfor %}
+    </div>
+
+    {% block content %}{% endblock %}
+
+
+</body> 
+<script src="https://kit.fontawesome.com/134a439898.js" crossorigin="anonymous"></script>
+<script>
+    function w3_open() {
+      document.getElementById("side_bar").style.display = "block";
+    }
+    
+    function w3_close() {
+      document.getElementById("side_bar").style.display = "none";
+    }
+</script>
+</html>  

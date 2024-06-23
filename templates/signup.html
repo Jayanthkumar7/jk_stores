@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{url_for('static',filename='logo.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{url_for('static',filename='navi.css')}}">
+
+    <style>
+        body{
+            background-repeat:no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            background-image: url( '{{url_for('static',filename='pexels-eberhardgross-1292115.jpg')}}' );
+
+
+        }
+        .signup {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .signup_box{
+           display: flex;
+           flex-direction: column;
+           padding: 20px 30px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+           border-radius: 20px;
+           background-color: white;
+           margin-top: 7vh;
+           
+        }
+        .signup .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1E0342;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        .form label {
+            margin-bottom: 5px;
+            color: #333;
+            display: block;
+        }
+        .form input[type="text"],
+        .form input[type="email"],
+        .form input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            width: 90%;
+        }
+        .form input[type="submit"] {
+            padding: 10px;
+            background-color: #1E0342;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .form input[type="submit"]:hover {
+            background-color: #0E46A3;
+        }
+        .submit_button{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        a{
+            text-decoration: none;
+            color:none ; 
+        }
+
+        .login_button{
+            color: #1E0342;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-left: 4px;
+            transform: all 0.55s;
+        }
+        .login_button:hover{
+            opacity: .7;
+        }
+        .login_button:active{
+            opacity: .4;
+        }
+    </style>
+</head>
+<body>
+    {% extends "navigation.html" %}
+   {% block content %}
+
+    <div class="signup">
+        <div class="signup_box">
+
+            <p class="title">
+                Signup
+            </p>
+            <div class="form">
+                <form action="/signup" method="post">
+                    <label for="name">Name :</label>
+                    <input type="text" name="name" id="name">
+                    <label for="user_name">Username :</label>
+                    <input type="text" name="user_name" id="user_name">
+                    <label for="email">Email :</label>
+                    <input type="email" name="Email" id="email">
+                    <label for="Password">Password :</label>
+                    <input type="password" name="password" id="Password">
+                    <div class="submit_button">
+                        <input type="submit" value="Submit ..">
+                        
+                        <p class="text">
+                            Already have account ! <span class="login_button" ><a href="{{url_for('login')}}">Login</a></span>
+                        </p>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content%}    
+</body>
+</html>

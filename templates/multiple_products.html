@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="shortcut icon" href="{{url_for('static', filename='logo.png')}}" type="image/x-icon">
+<style>
+    .content{
+        margin: 70px;
+    }
+    .ratings {
+        display: flex;
+        align-items: center;
+    }
+
+    .stars {
+        display: flex;
+    }
+
+    .no_of_ratings {
+        margin-left: 8px;
+        font-size: small;
+    }
+
+    .product{
+        display: flex;
+        box-shadow: 0px 0px 1px black;
+        flex-direction: row;
+        margin: 8px 0px;
+    }
+    .image_cat{
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+    }
+    .img_cat{
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+    }
+    .info_cat{
+        margin: 10px;
+    }
+    .name_cat{
+        font-size: large;
+        font-weight: 700;
+        margin-bottom: 7px;
+    }
+    .price_cat{
+        margin: 7px 0px;
+        font-size: medium;
+    }
+</style>
+</head>
+<body>
+    {% extends 'navigation.html' %}
+    {% block content %}
+    <div class="content">
+        {% for i in list%}
+        <a href="{{url_for('product',product_id=i.id)}}">
+        <div class="product">
+            <div class="image_cat">
+                <img class="img_cat" src="{{i.image}}" alt="">
+            </div>
+            <div class="info_cat">
+                <p class="name_cat">{{i.name}}</p>
+                <p class="price_cat">Price : &#8377 {{i.discount_price}}</p>
+                <div class="ratings">
+                    <div class="stars">
+                        {% for i in range(i.ratings|int) %}
+                            <i class="fa-solid fa-star"></i>
+                        {% endfor %}
+                        {% for j in range(5 - (i.ratings|int)) %}
+                            <i class="fa-regular fa-star"></i>
+                        {% endfor %}
+                    </div>
+                    <p class="no_of_ratings">({{i.no_of_ratings}})</p>
+                </div>
+            </div>
+        </div>
+    </a>
+        {% endfor %}
+    </div>
+    {% endblock content %}
+</body>
+</html>

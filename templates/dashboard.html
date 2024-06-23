@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        h2 {
+            color: #555;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .price {
+            font-weight: bold;
+        }
+        .instock {
+            color: green;
+            font-weight: bold;
+        }
+        .description ul {
+            list-style-type: disc;
+            margin: 0;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello, {{ username }}! Welcome to your dashboard.</h1>
+    <h2>Uploaded Images:</h2>
+    <ul>
+    {% for image in images %}
+        <li>
+            <img src="{{ url_for('uploaded_file', filename=image.img_filename) }}" alt="{{ image.name }}">
+            <p>{{ image.name }}</p>
+            <div class="description">
+                <ul>
+                {% for point in image.description_points %}
+                    <li>{{ point }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            <p>{{ image.category }}</p>
+            <p class="price">Price: ${{ image.price }}</p>
+            <p class="instock">In stock: {{ image.instock }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
