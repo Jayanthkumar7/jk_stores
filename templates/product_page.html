@@ -119,7 +119,6 @@
 
         .button {
             padding: 10px 10px;
-            
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
@@ -129,6 +128,11 @@
         .add-to-cart {
             border: none;
             background-color: #ff8c00;
+            color: white;
+        }
+        .buy_now{
+            border: none;
+            background-color: #a65b00;
             color: white;
         }
 
@@ -175,6 +179,7 @@
                         <label for="qt">Quantity:</label>
                         <input class="button quantity" type="number" name="quantity" min="1" max="5" value="1" id="qt">
                         <input class="button add-to-cart" name="add_to_cart" type="submit" value="Add to cart">
+                        <input class="button buy_now" name="buy_now" type="submit" value="Buy now">
                     </form>
                 </div>
             </div>    
