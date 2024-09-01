@@ -1,0 +1,14 @@
+JK stores
+html pages required:
+1)login/signup page
+2)home page
+3)search products page
+4)about page
+5)product page
+6)billing page
+7)order place page
+8)cart page
+9)orders list page
+10)account info page
+11)customer care page
+12)sidebar

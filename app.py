@@ -54,14 +54,14 @@ class Signup(UserMixin, db.Model):
         return str(self.sno)
 
 class user_product(db.Model):
-    __tablename__='cart'
-    id = db.Column(db.Integer, primary_key=True)
+    __tablename__ = 'cart'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('login_info.sno'), nullable=False)
     product_id = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     
-    
     user = db.relationship('Signup', backref=db.backref('cart', lazy=True))
+
 
 
 class Product(db.Model):
@@ -159,6 +159,7 @@ def product(product_id):
             if current_user.is_authenticated:
                 existinng_product=user_product.query.filter_by(product_id=product.id).first()
                 qt=request.form.get('quantity')
+                qt = int(qt)
                 if existinng_product:
                     existinng_product.quantity=qt
                     db.session.commit()
