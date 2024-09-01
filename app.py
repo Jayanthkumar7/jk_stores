@@ -3,8 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import login_user, login_required, LoginManager, logout_user, current_user, UserMixin
 import random
 from sqlalchemy.sql.expression import func
+from flask_ngrok import run_with_ngrok
 
 app = Flask(__name__)
+run_with_ngrok(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///jk.db"
 app.config['SECRET_KEY'] = 'your_secret_key'
 
@@ -209,4 +211,6 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
+
+    
